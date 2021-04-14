@@ -10,7 +10,8 @@
     <header>
         <nav class="navbar navbar-expand navbar-dark bg-dark mb-3">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'tools:list' %}">Utool</a>
+                <a class="navbar-brand" href="{% url 'pages:home' %}">uTool</a>
+                <a class="navbar-brand" href="{% url 'tools:list' %}">Anúncios</a>
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
