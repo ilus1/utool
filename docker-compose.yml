@@ -11,13 +11,8 @@ services:
     depends_on:
       - db
   db:
-    image: postgres
+    image: db.sqlite3
     restart: always
-    environment:
-      - POSTGRES_USER=postgress
-      - POSTGRES_PASSWORD=postgress
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
 
 volumes:
     postgres_data:

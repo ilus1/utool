@@ -1,3 +1,5 @@
+from django.views.generic import TemplateView
 from django.shortcuts import render
 
-# Create your views here.
+def profile_view(request):
+    return render(request, 'templates/account/profile.html')
