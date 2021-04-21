@@ -20,7 +20,7 @@ class Category(TimeStampedModel):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("tools:list_by_category", kwargs={"slug": self.slug})
+        return reverse("pages:list_by_category", kwargs={"slug": self.slug})
 
 class Tool(TimeStampedModel):
     category = models.ForeignKey(
@@ -43,4 +43,4 @@ class Tool(TimeStampedModel):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("tools:detail", kwargs={"slug": self.slug})
+        return reverse("pages:detail", kwargs={"slug": self.slug})

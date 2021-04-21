@@ -7,7 +7,7 @@ class ProfilePageView(generic.UpdateView):
     model = MyUser
     from_class = UserCreationForm
     template_name = 'account/profile.html'
-    success_url = reverse_lazy('users:perfil')
+    success_url = reverse_lazy('users:profile')
     fields = ['name', 'surname', 'email', 'cpf', 'zip', 'adress', 'number', 'complement', 'district', 'city', 'state',]
 
     def get_object(self):

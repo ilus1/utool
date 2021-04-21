@@ -1,5 +1,5 @@
 from django.urls import path
-
+""" 
 from .views import ToolDetailView, ToolListView
 
 app_name = "tools"
@@ -10,3 +10,4 @@ urlpatterns = [
     path("category/<slug:slug>/", ToolListView.as_view(), name="list_by_category"),
 ]
 
+ """
