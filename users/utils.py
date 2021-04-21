@@ -8,34 +8,34 @@ def validate_cpf(cpf):
 
     if not cpf or len(cpf) != 11:
         raise ValidationError(
-            _('%(cpf)s invalido, o CPF deve conter apenas numeros.'),
+            _('CPF inválido, o CPF deve conter apenas números.'),
             params={'cpf': cpf},
         )
 
-    novo_cpf = cpf[:-2]
-    reverso = 10
+    firts_nine_of_cpf = cpf[:-2]
+    reverse = 10
     total = 0
 
     for index in range(19):
         if index > 8:
             index -= 9
 
-        total += int(novo_cpf[index]) * reverso  
+        total += int(firts_nine_of_cpf[index]) * reverse  
 
-        reverso -= 1
-        if reverso < 2:
-            reverso = 11
+        reverse -= 1
+        if reverse < 2:
+            reverse = 11
             d = 11 - (total % 11)
 
             if d > 9:
                 d = 0
             total = 0
-            novo_cpf += str(d)
+            firts_nine_of_cpf += str(d)
 
-    sequencia = novo_cpf == str(novo_cpf[0]) * len(cpf)
+    sequence = firts_nine_of_cpf == str(firts_nine_of_cpf[0]) * len(cpf)
 
-    if cpf != novo_cpf or sequencia:
+    if cpf != firts_nine_of_cpf or sequence:
         raise ValidationError(
-            _('%(cpf)s nao e um CPF valido.'),
+            _('%(cpf)s não e um CPF válido.'),
             params={'cpf': cpf},
         )
