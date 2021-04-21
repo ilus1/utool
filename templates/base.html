@@ -10,9 +10,13 @@
     <header>
         <nav class="navbar navbar-expand navbar-dark bg-dark mb-3">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'pages:home' %}">Loja Python</a>
+                <a class="navbar-brand" href="{% url 'pages:home' %}">uTool</a>
+                <a class="navbar-brand" href="{% url 'tools:list' %}">Anúncios</a>
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:perfil' %}">Minha Conta</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_logout' %}">Sair</a>
                     </li>
