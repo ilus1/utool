@@ -138,7 +138,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # User Model
-AUTH_USER_MODEL = 'users.MyUser'
+AUTH_USER_MODEL = 'users.MyUserModel'
 
 # Media
 MEDIA_URL = "/media/"

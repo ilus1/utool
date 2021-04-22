@@ -2,6 +2,7 @@ from autoslug import AutoSlugField
 from django.db import models
 from django.urls import reverse
 from model_utils.models import TimeStampedModel
+from utool import settings
 
 class AvailableManager(models.Manager):
     def get_queryset(self):
@@ -32,6 +33,7 @@ class Tool(TimeStampedModel):
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     is_available = models.BooleanField(default=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
     objects = models.Manager()

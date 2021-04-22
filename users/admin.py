@@ -2,14 +2,14 @@ from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 
 from .forms import UserChangeForm, UserCreationForm
-from .models import MyUser
+from .models import MyUserModel
 
-@admin.register(MyUser)
+@admin.register(MyUserModel)
 
 class UserAdmin(auth_admin.UserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
-    model = MyUser
+    model = MyUserModel
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         (('Personal info'), {'fields': ('name', 'surname', 'email', 'cpf', 'zip_code', 'adress', 'number', 'complement', 'district', 'city', 'state',)}),
