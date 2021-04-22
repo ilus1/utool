@@ -12,15 +12,9 @@ class UserAdmin(auth_admin.UserAdmin):
     model = MyUser
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        (('Personal info'), {'fields': ('name', 'surname', 'email', 'cpf', 'zip', 'adress', 'number', 'complement', 'district', 'city', 'state',)}),
+        (('Personal info'), {'fields': ('name', 'surname', 'email', 'cpf', 'zip_code', 'adress', 'number', 'complement', 'district', 'city', 'state',)}),
         (('Permissions'), {
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
         }),
         (('Important dates'), {'fields': ('last_login', 'date_joined')}),
-    )
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('username', 'password1', 'password2'),
-        }),
     )

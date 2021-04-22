@@ -1,8 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from .utils import validate_cpf
-from django.db.models import CharField
-from django.core.validators import RegexValidator
 from django.db import models
+from django.core.validators import RegexValidator
 
 
 class MyUser(AbstractUser):
@@ -13,7 +12,7 @@ class MyUser(AbstractUser):
     number = models.CharField(verbose_name="numero", max_length=5, validators=[RegexValidator(regex='[0-9]+', message='Deve conter apenas numeros maiores que 0', code='erro')])
     complement = models.CharField(verbose_name="complemento", max_length=30)
     district = models.CharField(verbose_name="bairro", max_length=30)
-    zip = models.CharField(verbose_name="cep", max_length=8)
+    zip_code = models.CharField(verbose_name="cep", max_length=8)
     city = models.CharField(verbose_name="cidade", max_length=30)
     state = models.CharField(
         verbose_name="estado",
