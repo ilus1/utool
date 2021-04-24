@@ -172,7 +172,6 @@ ACCOUNT_FORMS = {
     'signup': 'users.forms.UserCreationForm'
 }
 
-
 # crispy-forms
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"

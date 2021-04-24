@@ -5,6 +5,7 @@ from django.core.validators import RegexValidator
 from tools.models import Tool
 
 
+
 class MyUserModel(AbstractUser):
     name = models.CharField(verbose_name="nome", max_length=50, validators=[RegexValidator(regex='[0-9a-zA-Z]{3}[0-9a-zA-Z]*', message='Nome deve conter apenas letras e numeros.', code='erro')])
     surname = models.CharField(verbose_name="sobrenome", max_length=700, validators=[RegexValidator(regex='[0-9a-zA-Z ]{3}[0-9a-zA-Z ]*', message='Sobrenome deve conter apenas letras, numeros e espacos.', code='erro')])
@@ -20,7 +21,11 @@ class MyUserModel(AbstractUser):
         max_length=2,
         default='DF',
     )
+    tool = models.ForeignKey(Tool, on_delete=models.CASCADE, null=True)
+
+
     
     first_name = False
     last_name = False
     REQUIRED_FIELDS = []
+
