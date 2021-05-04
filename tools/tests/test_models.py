@@ -13,7 +13,7 @@ class TestCategoryModel:
 
     def test_get_absolute_url(self, category):
         url = category.get_absolute_url()
-        assert url == f"/tools/category/{category.slug}/"
+        assert url == f"/category/{category.slug}/"
 
 
 class TestToolModel:
@@ -23,7 +23,7 @@ class TestToolModel:
 
     def test_get_absolute_url(self, tool):
         url = tool.get_absolute_url()
-        assert url == f"/tools/{tool.slug}/"
+        assert url == f"/{tool.slug}/"
 
     def test_available_manager(self):
         ToolFactory(is_available=True)

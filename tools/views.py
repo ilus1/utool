@@ -37,5 +37,12 @@ class NewToolView(generic.CreateView):
     success_url = reverse_lazy('users:profile')
     fields = ['category','name', 'image', 'description', 'price', 'is_available',]
     
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.owner = self.request.user.username
+        obj.save()        
+        return super(NewToolView, self).form_valid(form)
+
     def get_object(self):
         super()

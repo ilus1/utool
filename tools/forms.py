@@ -6,6 +6,12 @@ from users.models import MyUserModel
 
 class NewTool(Tool):
 
-    def __init__(self):
+    def __init__(self, *args):
         super().__init__()
+        
+""" class NewTool_ScrewDriver(Tool):
+    size = 
 
+    def __init__(self, *args):
+        super().__init__()
+         """

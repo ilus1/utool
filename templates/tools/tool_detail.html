@@ -19,6 +19,7 @@
             <h1 class="font-weight-bold">{{ tool.name }}</h1>
             <h2>R$ {{ tool.price }}</h2>
             <p>{{ tool.description }}</p>
+            <p>Dono: {{ tool.owner }}</p>
             <p>
                 Voltar para o catálogo de
                 <a class="text-decoration-none" href="{{ tool.category.get_absolute_url }}">

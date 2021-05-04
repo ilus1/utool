@@ -34,6 +34,7 @@ class Tool(TimeStampedModel):
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     is_available = models.BooleanField(default=True)
+    owner = models.CharField(max_length=50, blank=True, default='')
 
 
     objects = models.Manager()
