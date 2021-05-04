@@ -1,11 +1,13 @@
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django import forms
 from django.db import models
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from allauth.account.forms import SignupForm
-from .models import MyUserModel
-from .utils import validate_cpf
 from django.core.validators import RegexValidator
+from django.contrib import messages
+
+from .models import MyUserModel
 from tools.models import Tool
+from .utils import validate_cpf
 
 
 class UserChangeForm(UserChangeForm):
@@ -42,4 +44,5 @@ class UserCreationForm(SignupForm):
         user.name = self.cleaned_data['name']
         user.surname = self.cleaned_data['surname']
         user.save()
+        messages.success(request, 'Você foi cadastrado com sucesso!')
         return user
