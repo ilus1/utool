@@ -1,8 +1,9 @@
 from django.contrib.auth.models import AbstractUser
 from .utils import validate_cpf
 from django.db import models
+from django import forms
 from django.core.validators import RegexValidator
-from tools.models import Tool
+
 
 
 
@@ -21,10 +22,7 @@ class MyUserModel(AbstractUser):
         max_length=2,
         default='DF',
     )
-    tool = models.ForeignKey(Tool, on_delete=models.CASCADE, null=True)
 
-
-    
     first_name = False
     last_name = False
     REQUIRED_FIELDS = []

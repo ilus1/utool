@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import AboutPageView
-from tools.views import ToolDetailView, ToolListView
+from tools.views import NewToolView, ToolDetailView, ToolListView
 
 app_name = "pages"
 

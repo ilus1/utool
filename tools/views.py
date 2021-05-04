@@ -1,7 +1,11 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
+from django.views import generic
+from django.urls import reverse_lazy
 
 from .models import Category, Tool
+from users.models import MyUserModel
+from .forms import NewTool
 
 class ToolDetailView(DetailView):
     queryset = Tool.available.all()
@@ -25,3 +29,13 @@ class ToolListView(ListView):
         context["category"] = self.category
         context["categories"] = Category.objects.all()
         return context
+
+
+class NewToolView(generic.CreateView):
+    model = NewTool
+    template_name = 'tools/new_tool.html'
+    success_url = reverse_lazy('users:profile')
+    fields = ['category','name', 'image', 'description', 'price', 'is_available',]
+    
+    def get_object(self):
+        super()

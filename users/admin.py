@@ -18,3 +18,4 @@ class UserAdmin(auth_admin.UserAdmin):
         }),
         (('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
+    
