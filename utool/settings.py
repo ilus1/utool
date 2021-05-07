@@ -45,12 +45,15 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
     'tools.apps.ToolsConfig',
+    
     'crispy_forms',
 
     # allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    
+    'django_filters',
 ]
 
 MIDDLEWARE = [

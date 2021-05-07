@@ -7,6 +7,8 @@ from django.contrib import messages
 from .models import Category, Tool, ToolDisposableParts, ToolWrench, ToolEletric
 from users.models import MyUserModel
 
+from .filters import ToolFilter
+
 class ToolDetailView(DetailView):
     queryset = Tool.available.all()
 
@@ -28,6 +30,7 @@ class ToolListView(ListView):
         context = super().get_context_data(**kwargs)
         context["category"] = self.category
         context["categories"] = Category.objects.all()
+        context["filter"] = ToolFilter(self.request.GET, queryset=self.get_queryset())
         return context
 
 class ToolChoicesView(generic.TemplateView):
