@@ -4,9 +4,8 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib import messages
 
-from .models import Category, Tool
+from .models import Category, Tool, ToolDisposableParts, ToolWrench, ToolEletric
 from users.models import MyUserModel
-from .forms import NewTool
 
 class ToolDetailView(DetailView):
     queryset = Tool.available.all()
@@ -31,16 +30,46 @@ class ToolListView(ListView):
         context["categories"] = Category.objects.all()
         return context
 
+class ToolChoicesView(generic.TemplateView):
+    template_name = "tools/tool_choices.html"
+
+
 
 class NewToolView(generic.CreateView):
-    model = NewTool
-    template_name = 'tools/new_tool.html'
-    success_url = reverse_lazy('users:profile')
-    fields = ['category','name', 'image', 'description', 'price', 'is_available',]
+    
+    def __init__(self, model=Tool):
+        self.model = model
+        self.success_url = reverse_lazy("users:profile")
+        self.template_name = "tools/new_tool.html"
+        self.fields = ["category","name", "image", "description", "price",]
     
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.owner = self.request.user.email
         obj.save()
-        messages.success(self.request, 'O Anúncio foi publicado com sucesso!')        
+        messages.success(self.request, "O Anúncio foi publicado com sucesso!")        
         return super(NewToolView, self).form_valid(form)
+
+
+
+class NewToolDisposablePartsView(NewToolView):
+    
+    def __init__(self):
+        super().__init__(ToolDisposableParts)
+        self.fields.extend(["disposable_parts", "disposable_part_price"])
+
+
+
+class NewToolWrenchView(NewToolView):
+    
+    def __init__(self):
+        super().__init__(ToolWrench)
+        self.fields.extend(["size"])
+
+
+
+class NewToolEletricView(NewToolView):
+    
+    def __init__(self):
+        super().__init__(ToolEletric)
+        self.fields.extend(["voltage", "extra_part", "extra_part_specification"])

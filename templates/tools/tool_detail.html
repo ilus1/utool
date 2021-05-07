@@ -19,7 +19,17 @@
             <h1 class="font-weight-bold">{{ tool.name }}</h1>
             <h2>R$ {{ tool.price }}</h2>
             <p>{{ tool.description }}</p>
-            <p>Dono: {{ tool.owner }}</p>
+            <p>Dono: {{ tool.owner }}</p> 
+            {% if tool.tooldisposableparts.disposable_parts != '' %}
+            <p>Partes desgastaveis: {{ tool.tooldisposableparts.disposable_parts }}</p>
+            <p>Preco: {{ tool.tooldisposableparts.disposable_part_price }}</p>
+            {% elif tool.toolwrench.size != '' %}
+            <p>Tamanho: {{ tool.toolwrench.size }}</p>
+            {% elif tool.tooleletric.voltage != '' %}
+            <p>Voltagem: {{ tool.tooleletric.voltage }}</p>
+            <p>Parte extra: {{ tool.tooleletric.extra_part }}</p>
+            <p>Especificacoes: {{ tool.tooleletric.extra_part_specification }}</p>
+            {% endif %}
             <p>
                 Voltar para o catálogo de
                 <a class="text-decoration-none" href="{{ tool.category.get_absolute_url }}">

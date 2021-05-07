@@ -2,7 +2,6 @@ from autoslug import AutoSlugField
 from django.db import models
 from django.urls import reverse
 from model_utils.models import TimeStampedModel
-from utool import settings
 from users.models import MyUserModel
 
 class AvailableManager(models.Manager):
@@ -54,3 +53,26 @@ class Tool(TimeStampedModel):
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
+
+
+class ToolDisposableParts(Tool):
+    disposable_parts = models.CharField(max_length=5, choices=(
+        ('Lixa', 'Lixa'),
+        ('Lima', 'Lima'),
+        ('Serra', 'Serra'),
+    ),)
+    disposable_part_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+class ToolWrench(Tool):
+    size = models.PositiveIntegerField()
+
+class ToolEletric(Tool):
+    voltage = models.CharField(max_length=4, choices=(
+        ('2V', '2V'),
+        ('4V', '4V'),
+        ('8V', '8V'),
+        ('12V', '12V'),
+        ('20V', '20V'),
+    ),)
+    extra_part = models.TextField(blank=True)
+    extra_part_specification = models.TextField(blank=True)

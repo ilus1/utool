@@ -1,6 +1,5 @@
 from django.contrib import admin
 from .models import Category, Tool
-from .forms import NewTool
 
 @admin.register(Category)
 

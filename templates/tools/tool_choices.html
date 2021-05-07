@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Escolha o tipo de ferramenta{% endblock %}
+
+{% block content %}
+    <a class="btn btn-primary" href="{% url 'tools:new_tool_manual' %}">Manual</a>
+    <a class="btn btn-primary" href="{% url 'tools:new_tool_disposable_part' %}">Descartavel</a>
+    <a class="btn btn-primary" href="{% url 'tools:new_tool_wrench' %}">Chave</a>
+    <a class="btn btn-primary" href="{% url 'tools:new_tool_eletric' %}">Eletrica</a>
+{% endblock %}
