@@ -26,7 +26,7 @@ SECRET_KEY = '8eiblot753#doho#z&%%^no39_*iwgcp%)%!st(vqa6ct^wxbd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['utool.eba-pxphm29j.sa-east-1.elasticbeanstalk.com', 'localhost',]
+ALLOWED_HOSTS = ['web-ready.eba-22xammdf.us-west-2.elasticbeanstalk.com', 'localhost',]
 
 
 # Application definition
