@@ -80,8 +80,7 @@ class NewToolEletricView(NewToolView):
 
 class DeleteToolView(DeleteView):
     model = Tool
-    success_url = reverse_lazy("users:profile")
-    error_url = reverse_lazy("pages:list")
+    success_url = reverse_lazy("pages:list")
 
     template_name = 'tools/delete_tool.html'
 
@@ -90,8 +89,9 @@ class DeleteToolView(DeleteView):
         self.object = self.get_object()
         
         if self.object.owner != self.request.user.email:
-            return redirect(self.error_url)
+            return redirect(self.success_url)
         
         else:
+            messages.success(self.request, "O Anúncio foi removido com sucesso!")    
             return render(request, self.template_name, {})
 

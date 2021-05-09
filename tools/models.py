@@ -41,7 +41,8 @@ class Tool(TimeStampedModel):
     image = models.ImageField(
         upload_to="tools/%Y/%m/%d", 
         blank=True,
-        verbose_name='Imagem'
+        verbose_name='Imagem',
+        default='/tools/2021/03/16/default_tool.jpg'
     )
     description = models.TextField(
         blank=True,

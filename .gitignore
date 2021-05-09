@@ -1,4 +1,6 @@
 **/migrations
+.ebextensions/*
+.vscode/*
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
