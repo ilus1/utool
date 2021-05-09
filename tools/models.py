@@ -25,16 +25,41 @@ class Category(TimeStampedModel):
 
 class Tool(TimeStampedModel):
     category = models.ForeignKey(
-        Category, related_name="tools", on_delete=models.CASCADE
+        Category, related_name="tools", 
+        on_delete=models.CASCADE,
+        verbose_name='Categoria da Ferramenta'
     )
-    name = models.CharField(max_length=255)
-    slug = AutoSlugField(unique=True, always_update=False, populate_from="name")
-    image = models.ImageField(upload_to="tools/%Y/%m/%d", blank=True)
-    description = models.TextField(blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    is_available = models.BooleanField(default=True)
-    owner = models.CharField(max_length=50, blank=True, default='')
-
+    name = models.CharField(
+        max_length=255,
+        verbose_name='Nome da Ferramenta'
+    )
+    slug = AutoSlugField(
+        unique=True, 
+        always_update=False, 
+        populate_from="name"
+    )
+    image = models.ImageField(
+        upload_to="tools/%Y/%m/%d", 
+        blank=True,
+        verbose_name='Imagem'
+    )
+    description = models.TextField(
+        blank=True,
+        verbose_name='Descrição'
+    )
+    price = models.DecimalField(
+        max_digits=10, 
+        decimal_places=2,
+        verbose_name='Preço'
+    )
+    is_available = models.BooleanField(
+        default=True,
+        verbose_name='Disponível'
+    )
+    owner = models.CharField(
+        max_length=50, 
+        blank=True, default=''
+    )
 
     objects = models.Manager()
     available = AvailableManager()
@@ -56,11 +81,13 @@ class Tool(TimeStampedModel):
 
 
 class ToolDisposableParts(Tool):
-    disposable_parts = models.CharField(max_length=5, choices=(
-        ('Lixa', 'Lixa'),
-        ('Lima', 'Lima'),
-        ('Serra', 'Serra'),
+    disposable_parts = models.CharField(max_length=10, choices=(
+        ('sandpaper', 'Lixa'),
+        ('drill', 'Broca'),
+        ('saw', 'Serra'),
+        ('blade', 'Lâmina'),
     ),)
+
     disposable_part_price = models.DecimalField(max_digits=10, decimal_places=2)
 
 class ToolWrench(Tool):

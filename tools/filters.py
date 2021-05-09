@@ -8,7 +8,7 @@ class ToolFilter(django_filters.FilterSet):
         ('descending', 'Mais Caro')
     )
 
-    ordering = django_filters.ChoiceFilter(label='Ordering', choices=CHOICES, method='filter_by_order',)
+    ordering = django_filters.ChoiceFilter(label='Ordenar Por:', choices=CHOICES, method='filter_by_order',)
 
     class Meta:
         model = Tool
