@@ -13,6 +13,7 @@ class ProfilePageView(generic.UpdateView):
     fields = ['name', 'surname', 'email', 'cpf', 'zip_code','adress', 'number', 'complement', 'district', 'city',]
 
     def form_valid(self, form):
+        self.request.user.save()
         messages.success(self.request, 'Perfil atualizado com sucesso!')
         return HttpResponseRedirect(self.get_success_url())
     

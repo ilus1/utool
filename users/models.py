@@ -38,7 +38,8 @@ class MyUserModel(AbstractUser):
     )
     complement = models.CharField(
         verbose_name="complemento", 
-        max_length=30
+        max_length=30,
+        blank=True
     )
     district = models.CharField(
         verbose_name="bairro", 
@@ -46,12 +47,44 @@ class MyUserModel(AbstractUser):
     )
     zip_code = models.CharField(
         verbose_name="cep", 
-        max_length=8
+        validators=[RegexValidator(regex='7[0-3][0-9]{3}-[0-9]{3}', 
+        message='CEP estar no formato xxxxx-xxx, e ser um CEP do DF', 
+        code='erro')],
+        max_length=9
     )
-    city = models.CharField(
-        verbose_name="cidade", 
-        max_length=30
-    )
+    city = models.CharField(max_length=20, choices=(
+        ('Aguas Claras', 'Aguas Claras'),
+        ('Brazlandia', 'Brazlandia'),
+        ('Candangolandia', 'Candangolandia'),
+        ('Ceilandia', 'Ceilandia'),
+        ('Cruzeiro', 'Cruzeiro'),
+        ('Fercal', 'Fercal'),
+        ('Gama', 'Gama'),
+        ('Guara', 'Guara'),
+        ('Itapoa', 'Itapoa'),
+        ('Jardim Botanico', 'Jardim Botanico'),
+        ('Lago Norte', 'Lago Norte'),
+        ('Lago Sul', 'Lago Sul'),
+        ('Nucleo Bandeirante', 'Nucleo Bandeirante'),
+        ('Paranoa', 'Paranoa'),
+        ('Park Way', 'Park Way'),
+        ('Planaltina', 'Planaltina'),
+        ('Plano Piloto', 'Plano Piloto'),
+        ('Samambaia', 'Samambaia'),
+        ('Taguatinga', 'Taguatinga'),
+        ('Recanto das Emas', 'Recanto das Emas'),
+        ('Riacho Fundo 1', 'Riacho Fundo 1'),
+        ('Riacho Fundo 2', 'Riacho Fundo 2'),
+        ('Santa Maria', 'Santa Maria'),
+        ('SCIA', 'SCIA'),
+        ('SIA', 'SIA'),
+        ('Sao Sebastiao', 'Sao Sebastiao'),
+        ('Sobradinho', 'Sobradinho'),
+        ('Sobradinho 2', 'Sobradinho 2'),
+        ('Sudoeste', 'Sudoeste'),
+        ('Varjao', 'Varjao'),
+        ('Vicente Pires', 'Vicente Pires'),
+    ),)
     state = models.CharField(
         verbose_name="estado",
         max_length=2,

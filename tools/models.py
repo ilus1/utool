@@ -27,7 +27,7 @@ class Tool(TimeStampedModel):
     category = models.ForeignKey(
         Category, related_name="tools", 
         on_delete=models.CASCADE,
-        verbose_name='Categoria da Ferramenta'
+        verbose_name='Categoria da Ferramenta',
     )
     name = models.CharField(
         max_length=255,

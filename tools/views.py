@@ -1,13 +1,14 @@
 from django.views import generic
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.db import models
 from django.views.generic import DetailView, ListView, DeleteView
 from django.shortcuts import get_object_or_404, render, redirect
 
 from users.models import MyUserModel
 from .filters import ToolFilter
 from .models import Category, Tool, ToolDisposableParts, ToolWrench, ToolEletric
-
+import re
 
 class ToolDetailView(DetailView):
     queryset = Tool.available.all()
@@ -39,15 +40,17 @@ class ToolChoicesView(generic.TemplateView):
 
 
 class NewToolView(generic.CreateView):
-    
-    def __init__(self, model=Tool):
+
+    def __init__(self, model=Tool, base_category=Category.objects.get(name="Manuais")):
         self.model = model
+        self.base_category = base_category
         self.success_url = reverse_lazy("users:profile")
         self.template_name = "tools/new_tool.html"
-        self.fields = ["category","name", "image", "description", "price",]
+        self.fields = ["name", "image", "description", "price",]
     
     def form_valid(self, form):
         obj = form.save(commit=False)
+        obj.category = self.base_category
         obj.owner = self.request.user.email
         obj.save()
         messages.success(self.request, "O Anúncio foi publicado com sucesso!")        
@@ -55,23 +58,23 @@ class NewToolView(generic.CreateView):
 
 
 class NewToolDisposablePartsView(NewToolView):
-    
+
     def __init__(self):
-        super().__init__(ToolDisposableParts)
+        super().__init__(ToolDisposableParts, Category.objects.get(name="Desgastaveis"))
         self.fields.extend(["disposable_parts", "disposable_part_price"])
 
 
 class NewToolWrenchView(NewToolView):
     
     def __init__(self):
-        super().__init__(ToolWrench)
+        super().__init__(ToolWrench, Category.objects.get(name="Chaves"))
         self.fields.extend(["size"])
 
 
 class NewToolEletricView(NewToolView):
     
     def __init__(self):
-        super().__init__(ToolEletric)
+        super().__init__(ToolEletric, Category.objects.get(name="Eletricas"))
         self.fields.extend(["voltage", "extra_part", "extra_part_specification"])
 
 
@@ -91,3 +94,4 @@ class DeleteToolView(DeleteView):
         
         else:
             return render(request, self.template_name, {})
+
