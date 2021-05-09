@@ -26,7 +26,7 @@ SECRET_KEY = '8eiblot753#doho#z&%%^no39_*iwgcp%)%!st(vqa6ct^wxbd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['utool.eba-pxphm29j.sa-east-1.elasticbeanstalk.com', 'localhost',]
 
 
 # Application definition
@@ -123,8 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'pt-br'
-
-TIME_ZONE = 'UTC'
+#Flask-SQLAlchemy=1.0
 
 USE_I18N = True
 
