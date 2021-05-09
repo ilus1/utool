@@ -35,9 +35,6 @@ class ToolListView(ListView):
         context["filter"] = ToolFilter(self.request.GET, queryset=self.get_queryset())
         return context
 
-class ToolChoicesView(generic.TemplateView):
-    template_name = "tools/tool_choices.html"
-
 
 class NewToolView(generic.CreateView):
 
@@ -95,3 +92,18 @@ class DeleteToolView(DeleteView):
             messages.success(self.request, "O Anúncio foi removido com sucesso!")    
             return render(request, self.template_name, {})
 
+
+
+class ToolChoicesView(generic.TemplateView):
+    template_name = "tools/tool_choices.html"
+    redirect_url = reverse_lazy("pages:list")
+
+
+    def get(self, request, *args, **kwargs):
+        
+        if request.user.adress == '':
+            return redirect(self.redirect_url)
+        
+        else:
+            return render(request, self.template_name, {})
+    

@@ -72,9 +72,9 @@ Ferramentas
         {% endif %}
         {% endfor %}
         
-        {% if tool_list|length|remainder == 2 %}
+        {% if filter.qs|length|remainder == 2 %}
         <div class="card border-0"></div>
-        {% elif tool_list|length|remainder == 1 %}
+        {% elif filter.qs|length|remainder == 1 %}
         <div class="card border-0"></div>
         <div class="card border-0"></div>
         {% endif %}
