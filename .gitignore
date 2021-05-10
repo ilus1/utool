@@ -2,6 +2,8 @@
 .ebextensions/*
 .vscode/*
 
+artemis/
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

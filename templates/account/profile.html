@@ -10,14 +10,28 @@
     {% include 'messages.html' %}
     
     <form method="post">
+        
         {% csrf_token %}
         {{ form|crispy }}
+        
         <button class="btn btn-success" type="submit">Salvar Alterações</button>
+        
         {% if user.adress == '' %}
-            <button type="button" disabled>Adicionar Ferramentas</button>
+        
+            <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Conclua o cadastro para adicionar ferramentas!"> 
+                Adicionar Ferramentas
+            </button>
+
         {% else %}
-            <a class="btn btn-primary" href="{% url 'tools:new_tool' %}">Adicionar Ferramentas</a>
+            
+            <a class="btn btn-primary" href="{% url 'tools:new_tool' %}" >Adicionar Ferramentas</a>
+        
         {% endif %}
+
     </form>
-    
+
 {% endblock %}
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})

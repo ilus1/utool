@@ -41,10 +41,6 @@ class MyUserModel(AbstractUser):
         max_length=30,
         blank=True
     )
-    district = models.CharField(
-        verbose_name="bairro", 
-        max_length=30
-    )
     zip_code = models.CharField(
         verbose_name="cep", 
         validators=[RegexValidator(regex='7[0-3][0-9]{3}-[0-9]{3}', 
@@ -52,39 +48,45 @@ class MyUserModel(AbstractUser):
         code='erro')],
         max_length=9
     )
-    city = models.CharField(max_length=20, choices=(
-        ('Aguas Claras', 'Aguas Claras'),
-        ('Brazlandia', 'Brazlandia'),
-        ('Candangolandia', 'Candangolandia'),
-        ('Ceilandia', 'Ceilandia'),
-        ('Cruzeiro', 'Cruzeiro'),
-        ('Fercal', 'Fercal'),
-        ('Gama', 'Gama'),
-        ('Guara', 'Guara'),
-        ('Itapoa', 'Itapoa'),
-        ('Jardim Botanico', 'Jardim Botanico'),
-        ('Lago Norte', 'Lago Norte'),
-        ('Lago Sul', 'Lago Sul'),
-        ('Nucleo Bandeirante', 'Nucleo Bandeirante'),
-        ('Paranoa', 'Paranoa'),
-        ('Park Way', 'Park Way'),
-        ('Planaltina', 'Planaltina'),
-        ('Plano Piloto', 'Plano Piloto'),
-        ('Samambaia', 'Samambaia'),
-        ('Taguatinga', 'Taguatinga'),
-        ('Recanto das Emas', 'Recanto das Emas'),
-        ('Riacho Fundo 1', 'Riacho Fundo 1'),
-        ('Riacho Fundo 2', 'Riacho Fundo 2'),
-        ('Santa Maria', 'Santa Maria'),
+    city = models.CharField(max_length=20, verbose_name = "cidade", choices=(
+        ('aguas_claras', 'Águas Claras'),
+        ('brazlandia', 'Brazlândia'),
+        ('candangolandia', 'Candangolândia'),
+        ('ceilandia', 'Ceilândia'),
+        ('cruzeiro', 'Cruzeiro'),
+        ('fercal', 'Fercal'),
+        ('gama', 'Gama'),
+        ('guara', 'Guará'),
+        ('itapoa', 'Itapoã'),
+        ('jardim_botanico', 'Jardim Botânico'),
+        ('lago_norte', 'Lago Norte'),
+        ('lago_Sul', 'Lago Sul'),
+        ('nucleo_bandeirante', 'Núcleo Bandeirante'),
+        ('paranoa', 'Paranoá'),
+        ('park_way', 'Park Way'),
+        ('planaltina', 'Planaltina'),
+        ('plano_piloto', 'Plano Piloto'),
+        ('samambaia', 'Samambaia'),
+        ('taguatinga', 'Taguatinga'),
+        ('recanto_das_emas', 'Recanto das Emas'),
+        ('riacho_fundo_1', 'Riacho Fundo 1'),
+        ('riacho _fundo_2', 'Riacho Fundo 2'),
+        ('santa_maria', 'Santa Maria'),
         ('SCIA', 'SCIA'),
         ('SIA', 'SIA'),
-        ('Sao Sebastiao', 'Sao Sebastiao'),
-        ('Sobradinho', 'Sobradinho'),
-        ('Sobradinho 2', 'Sobradinho 2'),
-        ('Sudoeste', 'Sudoeste'),
-        ('Varjao', 'Varjao'),
-        ('Vicente Pires', 'Vicente Pires'),
+        ('sao_sebastiao', 'São Sebastiao'),
+        ('sobradinho', 'Sobradinho'),
+        ('sobradinho_2', 'Sobradinho 2'),
+        ('sudoeste', 'Sudoeste'),
+        ('varjao', 'Varjão'),
+        ('vicente pires', 'Vicente Pires'),
     ),)
+    
+    district = models.CharField(
+        verbose_name="bairro", 
+        max_length=30
+    )
+
     state = models.CharField(
         verbose_name="estado",
         max_length=2,
