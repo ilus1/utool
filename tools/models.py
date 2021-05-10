@@ -107,17 +107,17 @@ class ToolDisposableParts(Tool):
     )
 
 class ToolWrench(Tool):
-    size = models.PositiveIntegerField()
+    size = models.PositiveIntegerField(
+        verbose_name = "Tamanho"
+    )
 
 class ToolEletric(Tool):
     voltage = models.CharField(
-        max_length=4, 
+        max_length=6, 
         choices=(
-            ('2V', '2V'),
-            ('4V', '4V'),
-            ('8V', '8V'),
-            ('12V', '12V'),
-            ('20V', '20V'),
+            ('110V', '110V'),
+            ('220V', '220V'),
+            ('Bivolt', 'Bivolt'),
         ),
         verbose_name="Voltagem"
     )

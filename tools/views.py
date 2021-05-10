@@ -68,7 +68,8 @@ class NewToolWrenchView(NewToolView):
     
     def __init__(self):
         super().__init__(ToolWrench, Category.objects.get(name="Chaves"))
-        self.fields.extend(["size"])
+        self.fields.pop(2)
+        self.fields.extend(["size", "description"])
 
 
 class NewToolEletricView(NewToolView):

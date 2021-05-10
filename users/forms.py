@@ -10,7 +10,8 @@ from .utils import validate_cpf
 
 class UserCreationForm(SignupForm):
     cpf = forms.CharField(
-        validators=[validate_cpf]
+        validators=[validate_cpf],
+        label = "CPF", 
     )
     name = forms.CharField(
         label="Nome", 
