@@ -2,7 +2,7 @@
 .ebextensions/*
 .vscode/*
 
-artemis/
+.artemis/*
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
