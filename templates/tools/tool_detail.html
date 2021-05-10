@@ -36,7 +36,7 @@
                 <p>Especificacoes: {{ tool.tooleletric.extra_part_specification }}</p>
             {% endif %}
             
-            {% if user.email == tool.owner %}
+            {% if user == tool.owner %}
             <a class="btn btn-danger" href="{% url 'pages:delete_tool' tool.slug%}">Excluir Ferramentas</a>
             {% endif %}
 
