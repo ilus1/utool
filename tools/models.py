@@ -57,9 +57,9 @@ class Tool(TimeStampedModel):
         default=True,
         verbose_name='Disponível'
     )
-    owner = models.CharField(
-        max_length=50, 
-        blank=True, default=''
+    owner = models.ForeignKey(
+        MyUserModel, 
+        on_delete=models.CASCADE
     )
 
     objects = models.Manager()

@@ -48,7 +48,7 @@ class NewToolView(generic.CreateView):
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.category = self.base_category
-        obj.owner = self.request.user.email
+        obj.owner = self.request.user
         obj.save()
         messages.success(self.request, "O Anúncio foi publicado com sucesso!")        
         return super(NewToolView, self).form_valid(form)

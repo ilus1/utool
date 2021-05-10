@@ -21,7 +21,7 @@
             <h2>R$ {{ tool.price }}</h2>
             
             <p>{{ tool.description }}</p>
-            <p>Dono: {{ tool.owner }}</p> 
+            <p>Dono: {{ tool.owner.email }}</p> 
             
             {% if tool.tooldisposableparts.disposable_parts != '' %}
                 <p>Partes desgastaveis: {{ tool.tooldisposableparts.disposable_parts }}</p>

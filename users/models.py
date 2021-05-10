@@ -48,7 +48,7 @@ class MyUserModel(AbstractUser):
         code='erro')],
         max_length=9
     )
-    city = models.CharField(max_length=20, verbose_name = "cidade", choices=(
+    district = models.CharField(max_length=20, verbose_name = "bairro", choices=(
         ('aguas_claras', 'Águas Claras'),
         ('brazlandia', 'Brazlândia'),
         ('candangolandia', 'Candangolândia'),
@@ -81,11 +81,6 @@ class MyUserModel(AbstractUser):
         ('varjao', 'Varjão'),
         ('vicente pires', 'Vicente Pires'),
     ),)
-    
-    district = models.CharField(
-        verbose_name="bairro", 
-        max_length=30
-    )
 
     state = models.CharField(
         verbose_name="estado",

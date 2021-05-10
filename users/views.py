@@ -10,7 +10,7 @@ class ProfilePageView(generic.UpdateView):
     model = MyUserModel
     template_name = 'account/profile.html'
     success_url = reverse_lazy('users:profile')
-    fields = ['name', 'surname', 'email', 'cpf', 'zip_code','adress', 'number', 'complement', 'district', 'city',]
+    fields = ['name', 'surname', 'email', 'cpf', 'zip_code','adress', 'number', 'complement', 'district',]
 
     def form_valid(self, form):
         self.request.user.save()
