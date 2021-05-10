@@ -1,6 +1,6 @@
 **/migrations
 .ebextensions/*
-.vscode/*
+.vscode/
 
 artemis/
 
