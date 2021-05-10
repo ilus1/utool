@@ -89,7 +89,7 @@ class DeleteToolView(DeleteView):
         
         self.object = self.get_object()
         
-        if self.object.owner != self.request.user.email:
+        if self.object.owner != self.request.user:
             return redirect(self.success_url)
         
         else:
