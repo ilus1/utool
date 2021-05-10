@@ -35,6 +35,10 @@ Ferramentas
             
     </ul>
 
+</div>
+
+<div class="col-lg-9">
+
 <div class="container my-3">
     
     <form method="GET"> 
@@ -43,11 +47,8 @@ Ferramentas
     </form>
     
 </div>
-</div>
-
-<div class="col-lg-9">
     <div class="card-deck mb-3">
-        {% for tool in filter.qs %}
+        {% for tool in tool_list %}
         <div class="card">
             <a href="{{ tool.get_absolute_url }}">
                 {% if tool.image %}
@@ -66,19 +67,19 @@ Ferramentas
                 </a>
             </div>
         </div>
-        {% if forloop.counter|divisibleby:"3" and not forloop.last %}
+            {% if forloop.counter|divisibleby:"3" and not forloop.last %}
     </div>
-    <div class="card-deck mb-3">
-        {% endif %}
+        <div class="card-deck mb-3">
+            {% endif %}
         {% endfor %}
-        
-        {% if filter.qs|length|remainder == 2 %}
-        <div class="card border-0"></div>
-        {% elif filter.qs|length|remainder == 1 %}
-        <div class="card border-0"></div>
-        <div class="card border-0"></div>
-        {% endif %}
-    </div>
+            
+            {% if tool_list|length|remainder == 2 %}
+            <div class="card border-0"></div>
+            {% elif tool_list|length|remainder == 1 %}
+            <div class="card border-0"></div>
+            <div class="card border-0"></div>
+            {% endif %}
+        </div>
     
     {% if is_paginated %}
     {% include "pagination.html" with page=page_obj %}

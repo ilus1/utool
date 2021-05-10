@@ -16,10 +16,13 @@ class ToolDetailView(DetailView):
 
 class ToolListView(ListView):
     category = None
-    paginate_by = 6
+    paginate_by = 2
 
     def get_queryset(self):
-        queryset = Tool.available.all()
+        queryset = ToolFilter(
+            self.request.GET,
+            queryset=Tool.objects.all()
+        ).qs
 
         category_slug = self.kwargs.get("slug")
         if category_slug:
