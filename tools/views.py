@@ -16,7 +16,7 @@ class ToolDetailView(DetailView):
 
 class ToolListView(ListView):
     category = None
-    paginate_by = 2
+    paginate_by = 9
 
     def get_queryset(self):
         queryset = ToolFilter(
