@@ -82,25 +82,45 @@ class Tool(TimeStampedModel):
 
 
 class ToolDisposableParts(Tool):
-    disposable_parts = models.CharField(max_length=10, choices=(
-        ('sandpaper', 'Lixa'),
-        ('drill', 'Broca'),
-        ('saw', 'Serra'),
-        ('blade', 'Lâmina'),
-    ),)
+    disposable_parts = models.CharField(
+        max_length=10, 
+        choices=(
+            ('Lixa', 'Lixa'),
+            ('Broca', 'Broca'),
+            ('Serra', 'Serra'),
+            ('Lâmina', 'Lâmina'),
+        ), 
+        verbose_name="Partes desgastáveis",
+    )
 
-    disposable_part_price = models.DecimalField(max_digits=10, decimal_places=2)
+    disposable_part_price = models.DecimalField(
+        max_digits=10, 
+        decimal_places=2, 
+        verbose_name="Preço da parte desgastável"
+    )
 
 class ToolWrench(Tool):
     size = models.PositiveIntegerField()
 
 class ToolEletric(Tool):
-    voltage = models.CharField(max_length=4, choices=(
-        ('2V', '2V'),
-        ('4V', '4V'),
-        ('8V', '8V'),
-        ('12V', '12V'),
-        ('20V', '20V'),
-    ),)
-    extra_part = models.TextField(blank=True)
-    extra_part_specification = models.TextField(blank=True)
+    voltage = models.CharField(
+        max_length=4, 
+        choices=(
+            ('2V', '2V'),
+            ('4V', '4V'),
+            ('8V', '8V'),
+            ('12V', '12V'),
+            ('20V', '20V'),
+        ),
+        verbose_name="Voltagem"
+    )
+    
+    extra_part = models.TextField(
+        blank=True,
+        verbose_name="Parte extra"
+    )
+    
+    extra_part_specification = models.TextField(
+        blank=True,
+        verbose_name="Expecificação da parte extra",
+    )

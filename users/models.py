@@ -9,31 +9,32 @@ class MyUserModel(AbstractUser):
         verbose_name="nome", 
         max_length=50, 
         validators=[RegexValidator(regex='[0-9a-zA-Z]{3}[0-9a-zA-Z]*', 
-        message='Nome deve conter apenas letras e numeros.', 
+        message='Nome deve conter apenas letras e números.', 
         code='erro')]
     )
     surname = models.CharField(
         verbose_name="sobrenome", 
         max_length=700, 
         validators=[RegexValidator(regex='[0-9a-zA-Z ]{3}[0-9a-zA-Z ]*', 
-        message='Sobrenome deve conter apenas letras, numeros e espacos.', 
+        message='Sobrenome deve conter apenas letras, números e espaços.', 
         code='erro')]
     )
     cpf = models.CharField(
         max_length=11, 
-        help_text='Devera conter apenas numeros', 
+        help_text='Deverá conter apenas números', 
         unique=True, 
-        validators=[validate_cpf]
+        validators=[validate_cpf],
+        verbose_name="CPF"
     )
     adress = models.CharField(
-        verbose_name="endereco", 
+        verbose_name="endereço", 
         max_length=50
     )
     number = models.CharField(
-        verbose_name="numero", 
+        verbose_name="número", 
         max_length=5, 
         validators=[RegexValidator(regex='[0-9]+', 
-        message='Deve conter apenas numeros maiores que 0', 
+        message='Deve conter apenas números maiores que 0', 
         code='erro')]
     )
     complement = models.CharField(
@@ -42,9 +43,9 @@ class MyUserModel(AbstractUser):
         blank=True
     )
     zip_code = models.CharField(
-        verbose_name="cep", 
+        verbose_name="CEP", 
         validators=[RegexValidator(regex='7[0-3][0-9]{3}-[0-9]{3}', 
-        message='CEP estar no formato xxxxx-xxx, e ser um CEP do DF', 
+        message='CEP deve estar no formato xxxxx-xxx, e ser um CEP do DF', 
         code='erro')],
         max_length=9
     )

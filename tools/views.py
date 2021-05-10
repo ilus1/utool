@@ -60,7 +60,7 @@ class NewToolView(generic.CreateView):
 class NewToolDisposablePartsView(NewToolView):
 
     def __init__(self):
-        super().__init__(ToolDisposableParts, Category.objects.get(name="Desgastaveis"))
+        super().__init__(ToolDisposableParts, Category.objects.get(name="Desgastáveis"))
         self.fields.extend(["disposable_parts", "disposable_part_price"])
 
 
@@ -74,7 +74,7 @@ class NewToolWrenchView(NewToolView):
 class NewToolEletricView(NewToolView):
     
     def __init__(self):
-        super().__init__(ToolEletric, Category.objects.get(name="Eletricas"))
+        super().__init__(ToolEletric, Category.objects.get(name="Elétricas"))
         self.fields.extend(["voltage", "extra_part", "extra_part_specification"])
 
 
