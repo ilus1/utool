@@ -10,22 +10,24 @@ from .utils import validate_cpf
 
 class UserCreationForm(SignupForm):
     cpf = forms.CharField(
+        max_length=11, 
+        help_text='Deverá conter apenas números', 
         validators=[validate_cpf],
-        label = "CPF", 
+        label="CPF"
     )
     name = forms.CharField(
         label="Nome", 
         max_length='50', 
         validators=[RegexValidator(regex='[0-9a-zA-Z ]{3}[0-9a-zA-Z]*', 
-        message='Nome deve conter apenas letras, numeros e espacos.', 
-        code='erro')]
+            message='Nome deve conter apenas letras, numeros e espacos.', 
+            code='erro')]
     )
     surname = forms.CharField(
         label="Sobrenome", 
         max_length='700', 
         validators=[RegexValidator(regex='[0-9a-zA-Z ]{3}[0-9a-zA-Z ]*', 
-        message='Sobrenome deve conter apenas letras, numeros e espacos.', 
-        code='erro')]
+            message='Sobrenome deve conter apenas letras, numeros e espacos.', 
+            code='erro')]
     )
 
     class Meta(UserCreationForm.Meta):
