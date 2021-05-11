@@ -122,7 +122,8 @@ class ToolEletric(Tool):
         verbose_name="Voltagem"
     )
     
-    extra_part = models.TextField(
+    extra_part = models.CharField(
+        max_length=250,
         blank=True,
         verbose_name="Parte extra"
     )

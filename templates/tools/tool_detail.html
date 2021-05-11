@@ -39,6 +39,8 @@
         <p class="pt-1">{{tool.description}}</p>
         
         {% if tool.tooldisposableparts.disposable_parts != '' %}
+        <hr>
+        <p class="mb-2 text-muted text-uppercase small">Informações da ferramenta</p>
             <div class="table-responsive">
             <table class="table table-sm table-borderless mb-0">
                 <tbody>
@@ -54,6 +56,8 @@
             </table>
             </div>
         {% elif tool.toolwrench.size != '' %}
+        <hr>
+        <p class="mb-2 text-muted text-uppercase small">Informações da ferramenta</p>
             <div class="table-responsive">
             <table class="table table-sm table-borderless mb-0">
                 <tbody>
@@ -65,6 +69,8 @@
                 </table>
              </div>
         {% elif tool.tooleletric.voltage != '' %}
+        <hr>
+        <p class="mb-2 text-muted text-uppercase small">Informações da ferramenta</p>
             <div class="table-responsive">
                 <table class="table table-sm table-borderless mb-0">
                 <tbody>
