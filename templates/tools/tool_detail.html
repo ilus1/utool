@@ -6,48 +6,118 @@
 
 {% block content %}
 
-<div class="container my-3">
-    <div class="row">
-        <div class="col-lg-3 mb-3 mb-lg-0">
-            {% if tool.image %}
-            <img class="container-fluid" src="/media/{{tool.image}}" alt="">
-            {% else %}
-            <img class="card-img-top" src="{% static 'images/no_image.jpg' %}" alt="">
-            {% endif %}
-        </div>
-        <div class="col-lg-9">
-            <h1 class="font-weight-bold">{{ tool.name }}</h1>
-            
-            <h2>R$ {{ tool.price }}</h2>
-            
-            <p>{{ tool.description }}</p>
-            <p>Dono: {{ tool.owner.email }}</p> 
-            
-            {% if tool.tooldisposableparts.disposable_parts != '' %}
-                <p>Partes desgastaveis: {{ tool.tooldisposableparts.disposable_parts }}</p>
-                <p>Preco: {{ tool.tooldisposableparts.disposable_part_price }}</p>
-            
-            {% elif tool.toolwrench.size != '' %}
-                <p>Tamanho: {{ tool.toolwrench.size }}</p>
-            
-            {% elif tool.tooleletric.voltage != '' %}
-                <p>Voltagem: {{ tool.tooleletric.voltage }}</p>
-                <p>Parte extra: {{ tool.tooleletric.extra_part }}</p>
-                <p>Especificacoes: {{ tool.tooleletric.extra_part_specification }}</p>
-            {% endif %}
-            
-            {% if user == tool.owner %}
-            <a class="btn btn-danger" href="{% url 'pages:delete_tool' tool.slug%}">Excluir Ferramentas</a>
-            {% endif %}
+<section class="mb-5">
 
-            <p>
-                Voltar para o catálogo de
-                <a class="text-decoration-none" href="{{ tool.category.get_absolute_url }}">
-                    {{ tool.category.name }}
-                </a>
-            </p>
+    <div class="row">
+      <div class="col-md-6 mb-4 mb-md-0">
+  
+        <div id="mdb-lightbox-ui"></div>
+  
+        <div class="mdb-lightbox">
+  
+          <div class="row product-gallery mx-1">
+  
+            <div class="col-12 mb-0">
+                {% if tool.image %}
+                <img class="container-fluid" src="/media/{{tool.image}}" alt="">
+                {% else %}
+                <img class="card-img-top" src="{% static 'images/no_image.jpg' %}" alt="">
+                {% endif %}
+            </div>
+          </div>
+  
+        </div>
+  
+      </div>
+      
+      <div class="col-md-6">
+  
+        <h5>{{tool.name}}</h5>
+        <p class="mb-2 text-muted text-uppercase small">{{tool.category}}</p>
+
+        <p><span class="mr-1"><strong>R$ {{tool.price}}</strong></span></p>
+        <p class="pt-1">{{tool.description}}</p>
+        
+        {% if tool.tooldisposableparts.disposable_parts != '' %}
+            <div class="table-responsive">
+            <table class="table table-sm table-borderless mb-0">
+                <tbody>
+                <tr>
+                    <th class="pl-0 w-25" scope="row"><strong>Partes desgastáveis:</strong></th>
+                    <td>{{ tool.tooldisposableparts.disposable_parts }}</td>
+                </tr>
+                <tr>
+                    <th class="pl-0 w-25" scope="row"><strong>Preço:</strong></th>
+                    <td>{{ tool.tooldisposableparts.disposable_part_price }}</td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+        {% elif tool.toolwrench.size != '' %}
+            <div class="table-responsive">
+            <table class="table table-sm table-borderless mb-0">
+                <tbody>
+                    <tr>
+                        <th class="pl-0 w-25" scope="row"><strong>Tamanho:</strong></th>
+                        <td>{{ tool.toolwrench.size }}</td>
+                    </tr>
+                </tbody>
+                </table>
+             </div>
+        {% elif tool.tooleletric.voltage != '' %}
+            <div class="table-responsive">
+                <table class="table table-sm table-borderless mb-0">
+                <tbody>
+                    <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Voltagem:</strong></th>
+                            <td>{{ tool.tooleletric.voltage }}</td>
+                    </tr>
+                    <tr>
+                        <th class="pl-0 w-25" scope="row"><strong>Parte extra:</strong></th>
+                        <td>{{ tool.tooleletric.extra_part }}</td>
+                    </tr>
+                    <tr>
+                        <th class="pl-0 w-25" scope="row"><strong>Especificações:</strong></th>
+                        <td>{{ tool.tooleletric.extra_part_specification }}</td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+        <hr>
+        <div class="table-responsive mb-2">
+        <p class="mb-2 text-muted text-uppercase small">Informações para locação</p>
+          <table class="table table-sm table-borderless">
+            <tbody>
+              <tr>
+                <th class="pl-0 w-25" scope="row"><strong>Contato:</strong></th>
+                <td>{{ tool.owner.email }}</td>
+              </tr>
+              <tr>
+                <th class="pl-0 w-25" ><strong>Proprietário:</strong></th>
+                <td>{{ tool.owner.name }} {{tool.owner.surname }} </td>
+              </tr>
+              <tr>
+                <th class="pl-0 w-25" scope="row"><strong>Retirada:</strong></th>
+                <td>{{ tool.owner.district }}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        
+        <a type="button" class="btn btn-light btn-md mr-1 mb-2" href="{{ tool.category.get_absolute_url }}">
+            Voltar para {{tool.category}}</a>
+        
+        {% if user == tool.owner %}
+            <a type="button" class="btn btn-danger btn-md mr-1 mb-2" href="{% url 'pages:delete_tool' tool.slug %}">
+                Excluir anúncio</a>
+        {% endif %}
+      
         </div>
     </div>
-</div>
+
+  </section>
 
 {% endblock content %}

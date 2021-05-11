@@ -3,10 +3,6 @@ from django.urls import resolve, reverse
 from pytest_django.asserts import assertTemplateUsed
 from django.test import RequestFactory
 
-@pytest.fixture(autouse=True)
-def enable_db_access(db):
-    pass
-
 @pytest.fixture
 
 def home_response(client):
