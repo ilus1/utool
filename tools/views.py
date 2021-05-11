@@ -44,7 +44,7 @@ class NewToolView(generic.CreateView):
     def __init__(self, model=Tool, base_category=Category.objects.get(name="Manuais")):
         self.model = model
         self.base_category = base_category
-        self.success_url = reverse_lazy("users:profile")
+        self.success_url = reverse_lazy("pages:list")
         self.template_name = "tools/new_tool.html"
         self.fields = ["name", "image", "description", "price",]
     

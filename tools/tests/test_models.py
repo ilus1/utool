@@ -16,7 +16,7 @@ class TestCategoryModel:
         assert url == f"/category/{category.slug}/"
 
 
-""" class TestToolModel:
+class TestToolModel:
     def test___str__(self, tool):
         assert tool.__str__() == tool.name
         assert str(tool) == tool.name
@@ -35,4 +35,4 @@ class TestCategoryModel:
             Tool.available.all(),
             Tool.objects.filter(is_available=True),
             transform=lambda x: x,
-        ) """
+        )
