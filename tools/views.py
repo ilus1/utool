@@ -41,9 +41,9 @@ class ToolListView(ListView):
 
 class NewToolView(generic.CreateView):
 
-    def __init__(self, model=Tool, base_category=Category.objects.get(name="Manuais")):
+    def __init__(self, model=Tool):
         self.model = model
-        self.base_category = base_category
+        self.base_category = Category.objects.get(name="Manuais")
         self.success_url = reverse_lazy("pages:list")
         self.template_name = "tools/new_tool.html"
         self.fields = ["name", "image", "description", "price",]
@@ -60,14 +60,16 @@ class NewToolView(generic.CreateView):
 class NewToolDisposablePartsView(NewToolView):
 
     def __init__(self):
-        super().__init__(ToolDisposableParts, Category.objects.get(name="Desgastáveis"))
+        super().__init__(ToolDisposableParts)
+        self.base_category = Category.objects.get(name="Desgastáveis")
         self.fields.extend(["disposable_parts", "disposable_part_price"])
 
 
 class NewToolWrenchView(NewToolView):
     
     def __init__(self):
-        super().__init__(ToolWrench, Category.objects.get(name="Chaves"))
+        super().__init__(ToolWrench)
+        self.base_category = Category.objects.get(name="Chaves")
         self.fields.pop(2)
         self.fields.extend(["size", "description"])
 
@@ -75,7 +77,8 @@ class NewToolWrenchView(NewToolView):
 class NewToolEletricView(NewToolView):
     
     def __init__(self):
-        super().__init__(ToolEletric, Category.objects.get(name="Elétricas"))
+        super().__init__(ToolEletric)
+        self.base_category = Category.objects.get(name="Elétricas")
         self.fields.extend(["voltage", "extra_part", "extra_part_specification"])
 
 
