@@ -52,6 +52,7 @@ class Tool(TimeStampedModel):
         default='/tools/2021/03/16/default_tool.jpg'
     )
     description = models.TextField(
+        max_length=500,
         blank=True,
         verbose_name='Descrição'
     )
@@ -123,7 +124,7 @@ class ToolEletric(Tool):
     )
     
     extra_part = models.CharField(
-        max_length=250,
+        max_length=500,
         blank=True,
         verbose_name="Parte extra"
     )
