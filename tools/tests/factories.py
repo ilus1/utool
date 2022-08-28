@@ -9,6 +9,8 @@ class UserFactory(factory.django.DjangoModelFactory):
     username = factory.fuzzy.FuzzyText()
     name = factory.fuzzy.FuzzyText()
     cpf = factory.fuzzy.FuzzyText()
+    email = factory.fuzzy.FuzzyText()
+    password = factory.fuzzy.FuzzyText()
 
     class Meta:
         model = MyUserModel

@@ -2,19 +2,20 @@ from django.views import generic
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.db import models
-from django.views.generic import DetailView, ListView, DeleteView
 from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 
 from users.models import MyUserModel
 from .filters import ToolFilter
 from .models import Category, Tool, ToolDisposableParts, ToolWrench, ToolEletric
 import re
 
-class ToolDetailView(DetailView):
+class ToolDetailView(generic.DetailView):
     queryset = Tool.available.all()
 
 
-class ToolListView(ListView):
+class ToolListView(generic.ListView):
     category = None
     paginate_by = 9
 
@@ -82,7 +83,7 @@ class NewToolEletricView(NewToolView):
         self.fields.extend(["voltage", "extra_part", "extra_part_specification"])
 
 
-class DeleteToolView(DeleteView):
+class DeleteToolView(generic.DeleteView):
     model = Tool
     success_url = reverse_lazy("pages:list")
 
@@ -113,4 +114,20 @@ class ToolChoicesView(generic.TemplateView):
         
         else:
             return render(request, self.template_name, {})
-    
+
+
+class UserToolsListView(LoginRequiredMixin, ToolListView):
+    template_name = 'tools/my_tools.html'
+
+    def get_queryset(self):
+        queryset = ToolFilter(
+            self.request.GET,
+            queryset=Tool.objects.filter(owner=self.request.user)
+        ).qs
+
+        category_slug = self.kwargs.get("slug")
+        if category_slug:
+            self.category = get_object_or_404(Category, slug=category_slug)
+            queryset = queryset.filter(category=self.category)
+
+        return queryset

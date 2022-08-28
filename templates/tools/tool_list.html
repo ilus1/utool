@@ -38,36 +38,6 @@ Ferramentas
         {{ filter.form|bootstrap }} 
         <button type="submit" class="btn btn-primary"> Pesquisar </button>
     </form>
-    <p> </p>
-    
-    <form method="post">
-        
-        {% csrf_token %}
-        {{ form|crispy }}
-        
-        {% if user.is_authenticated %}
-            {% if user.adress == '' %}
-        
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Adicione seu endereço ao perfil para adicionar ferramentas!"> 
-                    Adicionar Ferramentas
-                </button>
-
-            {% else %}
-            
-            <a class="btn btn-primary" href="{% url 'tools:new_tool' %}" >Adicionar Ferramentas</a>
-        
-            {% endif %}
-            
-        {% else %}
-                
-            <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Você precisa se cadastrar para adicionar ferramentas!"> 
-                Adicionar Ferramentas
-            </button>
-        
-        {% endif %}
-        
-
-    </form>
     
     </ul>
 

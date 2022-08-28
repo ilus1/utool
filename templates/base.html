@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+
+{% load static %}
+{% load crispy_forms_tags %}
+{% load tool_tags %}
+{% load bootstrap %}
+
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -13,6 +19,31 @@
                 <a class="navbar-brand" href="{% url 'pages:list' %}">uTool</a>
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
+                  
+                        {% if user.is_authenticated %}
+                            {% if user.adress == '' %}
+                        
+                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Adicione seu endereço ao perfil para adicionar ferramentas!"> 
+                                    Adicionar Ferramentas
+                                </button>
+                
+                            {% else %}
+                            
+                            <a class="btn btn-primary" href="{% url 'tools:new_tool' %}" >Adicionar Ferramentas</a>
+                        
+                            {% endif %}
+                            
+                        {% else %}
+                                
+                            <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Você precisa se cadastrar para adicionar ferramentas!"> 
+                                Adicionar Ferramentas
+                            </button>
+                        
+                        {% endif %}    
+                
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'pages:my_tools' %}">Meus anúncios</a>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'users:profile' %}">Minha Conta</a>
                     </li>
