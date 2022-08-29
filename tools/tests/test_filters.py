@@ -4,7 +4,7 @@ from pytest_django.asserts import assertQuerysetEqual
 from ..models import Tool
 from .factories import ToolFactory
 from django.test.client import RequestFactory
-from ..filters import ToolFilter
+from .tool_filters import ToolFilter
 
 pytestmark = pytest.mark.django_db
 class FiltersTestCase(TestCase):
